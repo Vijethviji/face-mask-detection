@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Face Mask Detection Stream</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    #videoStream {
+      border: 2px solid #333;
+      max-width: 90%;
+      height: auto;
+      margin-top: 20px;
+    }
+    button {
+      margin: 15px 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Face Mask Detection Webcam Stream</h1>
+  
+  <img id="videoStream" alt="Video Stream" />
+  <br />
+  
+  <button id="startBtn">Start Detection</button>
+  <button id="stopBtn" disabled>Stop Detection</button>
+  
+  <script>
+    const videoStream = document.getElementById('videoStream');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+
+    startBtn.onclick = () => {
+      videoStream.src = '/video_feed';  // Start streaming video
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+    };
+
+    stopBtn.onclick = () => {
+      videoStream.src = '';  // Stop streaming by clearing src
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+      // Optional: You may want to notify backend to release camera (if you implement that)
+    };
+  </script>
+</body>
+</html>
